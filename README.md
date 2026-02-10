@@ -1,25 +1,16 @@
-# Titan Design System Hub (DS-like UI, Static)
+# Titan Foundations · Colors
 
-This package is a lightweight **Hub** that mimics the Audiense/Titan UI style (light, table-based) while linking to:
-- **Zeroheight** (documentation)
-- **Storybook** (interactive components / implementation)
+This repository now starts from scratch with **Foundations** and a first deliverable: **Color tokens**.
 
 ## Files
-- `index.html`
-- `styles.css`
-- `script.js`
-- `manifest.json`
+- `colors.tokens.json`: source of truth for color tokens.
+  - `color.primitive.*`: base scales (100-900)
+  - `color.semantic.system-ui.*`: semantic aliases referencing primitive tokens
+- `index.html`: simple foundations page
+- `styles.css`: visual styles for token presentation
+- `script.js`: renders token families from `colors.tokens.json`
 
-## Edit content
-All content is driven by `manifest.json`.
-
-### Embed previews
-Add `embedUrl` per component using Storybook’s embeddable URL format (recommended):
-- `https://<storybook-host>/iframe.html?id=<your-story-id>`
-
-If Storybook blocks iframes (CSP / X-Frame-Options), previews won’t render, but links still work.
-
-## Deploy to GitHub Pages
-1. Create a repo (e.g. `titan-ds-hub`)
-2. Upload these files to the repo root
-3. Settings → Pages → Deploy from a branch → `main` / `/root`
+## Run
+```bash
+python3 -m http.server 4173 --bind 0.0.0.0
+```
