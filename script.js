@@ -112,32 +112,10 @@ function renderColorFoundations(){
   });
 }
 
-function createPreviewRow(colspan, embedUrl){
-  const tr = document.createElement("tr");
-  tr.className = "preview-row is-hidden";
-
-  const td = document.createElement("td");
-  td.colSpan = colspan;
-
-  const wrap = document.createElement("div");
-  wrap.className = "preview";
-
-  if (embedUrl && embedUrl.trim().length){
-    const iframe = document.createElement("iframe");
-    iframe.loading = "lazy";
-    iframe.title = "Storybook preview";
-    iframe.src = embedUrl;
-    wrap.appendChild(iframe);
-  } else {
-    const empty = document.createElement("div");
-    empty.className = "preview__empty";
-    empty.innerHTML = `No <strong>embedUrl</strong> set yet. Add a Storybook embeddable URL (recommended: <code>iframe.html?id=...</code>) in <code>manifest.json</code>.`;
-    wrap.appendChild(empty);
-  }
-
-  td.appendChild(wrap);
-  tr.appendChild(td);
-  return tr;
+function parsePathReference(ref) {
+  const match = ref.match(/\{color\.primitive\.(.+)\.(\d+)\.value\}/);
+  if (!match) return null;
+  return { family: match[1], step: match[2] };
 }
 
 function buildFamilyCard(title, rows) {

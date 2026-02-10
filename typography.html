@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Titan Foundations · Typography</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="layout">
+    <header class="hero">
+      <nav class="foundation-nav" aria-label="Foundations pages">
+        <a class="foundation-nav__link" href="./index.html">Colors</a>
+        <a class="foundation-nav__link" href="./colors-opacity.html">Colors Opacity</a>
+        <a class="foundation-nav__link is-active" href="./typography.html">Typography</a>
+      </nav>
+      <p class="eyebrow">Foundations</p>
+      <h1>Typography</h1>
+      <p class="lead">Typography tokens extracted from Zeroheight: family, primitive scale, and utility styles.</p>
+    </header>
+
+    <section class="panel">
+      <h2>Font family</h2>
+      <div id="fontFamily"></div>
+      <h3 class="panel-subtitle">Download font</h3>
+      <ul id="fontDownloads" class="download-list"></ul>
+    </section>
+
+    <section class="panel">
+      <h2>Primitive tokens</h2>
+      <div class="type-grid">
+        <div>
+          <h3 class="panel-subtitle">Size</h3>
+          <table class="token-table" id="sizeTable"></table>
+        </div>
+        <div>
+          <h3 class="panel-subtitle">Leading</h3>
+          <table class="token-table" id="leadingTable"></table>
+        </div>
+        <div>
+          <h3 class="panel-subtitle">Weight</h3>
+          <table class="token-table" id="weightTable"></table>
+        </div>
+        <div>
+          <h3 class="panel-subtitle">Case</h3>
+          <table class="token-table" id="caseTable"></table>
+        </div>
+        <div>
+          <h3 class="panel-subtitle">Decoration</h3>
+          <table class="token-table" id="decorationTable"></table>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Utility styles</h2>
+      <h3 class="panel-subtitle">Headings</h3>
+      <table class="token-table" id="headingsTable"></table>
+      <h3 class="panel-subtitle">Body</h3>
+      <table class="token-table" id="bodyTable"></table>
+      <h3 class="panel-subtitle">Special</h3>
+      <table class="token-table" id="specialTable"></table>
+    </section>
+  </main>
+
+  <script type="module">
+    const byId = (id) => document.getElementById(id);
+    const tokenChip = (token) => `<span class="token-chip">$${token}</span>`;
+
+    function makeTable(el, headers, rows) {
+      const head = `<thead><tr>${headers.map((h) => `<th>${h}</th>`).join('')}</tr></thead>`;
+      const body = `<tbody>${rows.map((r) => `<tr>${r.map((c) => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody>`;
+      el.innerHTML = head + body;
+    }
+
+    function primitiveRows(primitive, category) {
+      return Object.entries(primitive)
+        .filter(([, v]) => v.category === category)
+        .sort((a, b) => a[0].localeCompare(b[0], undefined, { numeric: true }))
+        .map(([token, value]) => {
+          if (category === 'size' || category === 'leading') return [tokenChip(token), value.px, value.rem];
+          if (category === 'weight') return [tokenChip(token), value.name, value.value];
+          return [tokenChip(token), value.value, value.denomination || '—'];
+        });
+    }
+
+    function utilityRows(group) {
+      return Object.entries(group)
+        .sort((a, b) => a[0].localeCompare(b[0], undefined, { numeric: true }))
+        .map(([token, refs]) => [tokenChip(token), refs.map(tokenChip).join(' ')]);
+    }
+
+    async function init() {
+      const res = await fetch('./typography.tokens.json', { cache: 'no-store' });
+      const data = await res.json();
+      const primitive = data.typography.primitive;
+
+      byId('fontFamily').innerHTML = `<div class="family"><h3 class="family__title">$font-audiense</h3><p class="family__meta">${primitive['font-audiense'].value}</p></div>`;
+      byId('fontDownloads').innerHTML = data.typography.downloads.map((f) => `<li>${f}</li>`).join('');
+
+      makeTable(byId('sizeTable'), ['Token name', 'PX values', 'REM values'], primitiveRows(primitive, 'size'));
+      makeTable(byId('leadingTable'), ['Token name', 'PX values', 'REM values'], primitiveRows(primitive, 'leading'));
+      makeTable(byId('weightTable'), ['Token name', 'Value', 'Token Denomination'], primitiveRows(primitive, 'weight'));
+      makeTable(byId('caseTable'), ['Token name', 'Value', 'Token Denomination'], primitiveRows(primitive, 'case'));
+      makeTable(byId('decorationTable'), ['Token name', 'Value', 'Token Denomination'], primitiveRows(primitive, 'decoration'));
+
+      makeTable(byId('headingsTable'), ['Token name', 'Primitive Tokens'], utilityRows(data.typography.utility.headings));
+      makeTable(byId('bodyTable'), ['Token name', 'Primitive Tokens'], utilityRows(data.typography.utility.body));
+      makeTable(byId('specialTable'), ['Name', 'Tokens'], utilityRows(data.typography.utility.special));
+    }
+
+    init();
+  </script>
+</body>
+</html>
