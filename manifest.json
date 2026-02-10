@@ -1,0 +1,75 @@
+{
+  "meta": {
+    "title": "Titan Design System Hub",
+    "subtitle": "Single source of truth for Titan status, docs, and interactive previews.",
+    "zeroheight_home": "https://zeroheight.com/55d823317/p/155c35-titan-design-system",
+    "storybook_home": "https://main--6650538e5e1d9c67fe4c1392.chromatic.com/?path=/docs/01-about-titan-react-and-configuration--docs",
+    "updated": "2026-02-10",
+    "ui_style": "Titan / Audiense DS-like (light)"
+  },
+  "current_components": [
+    {
+      "name": "Button",
+      "category": "Components",
+      "status": "Current",
+      "tags": [
+        "actions",
+        "core"
+      ],
+      "docsUrl": "https://zeroheight.com/55d823317/p/155c35-titan-design-system",
+      "storybookUrl": "https://main--6650538e5e1d9c67fe4c1392.chromatic.com/?path=/docs/01-about-titan-react-and-configuration--docs",
+      "embedUrl": ""
+    },
+    {
+      "name": "Input",
+      "category": "Components",
+      "status": "Current",
+      "tags": [
+        "forms"
+      ],
+      "docsUrl": "https://zeroheight.com/55d823317/p/155c35-titan-design-system",
+      "storybookUrl": "https://main--6650538e5e1d9c67fe4c1392.chromatic.com/?path=/docs/01-about-titan-react-and-configuration--docs",
+      "embedUrl": ""
+    },
+    {
+      "name": "Modal",
+      "category": "Patterns",
+      "status": "Current",
+      "tags": [
+        "overlay",
+        "dialog"
+      ],
+      "docsUrl": "https://zeroheight.com/55d823317/p/155c35-titan-design-system",
+      "storybookUrl": "https://main--6650538e5e1d9c67fe4c1392.chromatic.com/?path=/docs/01-about-titan-react-and-configuration--docs",
+      "embedUrl": ""
+    }
+  ],
+  "next_components": [
+    {
+      "name": "Tabs",
+      "status": "Next",
+      "notes": "Define interaction + accessibility. Align with Dev on keyboard behavior.",
+      "link": ""
+    },
+    {
+      "name": "Toast / Notification",
+      "status": "Next",
+      "notes": "Decide stacking + duration defaults.",
+      "link": ""
+    }
+  ],
+  "require_to_titan": {
+    "cta_label": "Request a Titan component/change",
+    "cta_link": "",
+    "template": [
+      "What are you trying to achieve?",
+      "Component / pattern needed",
+      "User stories / acceptance criteria",
+      "Platform / product area",
+      "Priority + target date",
+      "Links (Figma, tickets, references)",
+      "Accessibility considerations",
+      "Dev owner (if known)"
+    ]
+  }
+}
