@@ -186,6 +186,44 @@ body{
   overflow: hidden;
 }
 
+.ds-showcase{
+  padding: 18px 16px 8px;
+  border-bottom: 1px solid var(--border);
+  background: #fbfbfc;
+}
+
+.ds-showcase__head{ margin-bottom: 14px; }
+.h2--section{ margin: 0; font-size: 20px; }
+
+.btn-grid{
+  display: grid;
+  grid-template-columns: 132px repeat(4, minmax(120px, 1fr));
+  gap: 10px;
+  align-items: center;
+}
+
+.btn-grid__header{
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.btn-grid__label{
+  color: #2b5db6;
+  font-weight: 600;
+}
+
+@media (max-width: 980px){
+  .btn-grid{
+    overflow-x: auto;
+    display: flex;
+    gap: 8px;
+    padding-bottom: 6px;
+  }
+  .btn-grid > *{ min-width: 120px; }
+  .btn-grid__label{ min-width: 132px; }
+}
+
 .panel__row{
   display:flex;
   align-items:center;
@@ -344,6 +382,38 @@ body{
   justify-content:center;
   gap: 8px;
 }
+
+.btn--ds{
+  border-radius: var(--r-12);
+  border: 1px solid transparent;
+  height: 54px;
+  padding: 0 24px;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 0;
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+
+.btn--ds.btn--primary,
+.btn--ds.btn--primary.is-hover:active{ background: #1f1f1f; color: #f1f1f1; }
+.btn--ds.btn--primary.is-hover{ background: #4a4a4a; color: #f1f1f1; }
+.btn--ds.btn--primary.is-pressed{ background: #575757; color: #f1f1f1; }
+.btn--ds.btn--primary:disabled{ background: #d6d6d9; color: #9da0a4; }
+
+.btn--ds.btn--secondary{ background: #e5e5e8; color: #1f1f1f; }
+.btn--ds.btn--secondary.is-hover{ background: #d0d0d3; }
+.btn--ds.btn--secondary.is-pressed{ background: #c1c2c6; }
+.btn--ds.btn--secondary:disabled{ background: #d6d6d9; color: #9da0a4; }
+
+.btn--ds.btn--tertiary{ background: #f9f9fa; color: #1f1f1f; border-color: #f1f1f3; }
+.btn--ds.btn--tertiary.is-hover{ background: #ececee; border-color: #ececee; }
+.btn--ds.btn--tertiary.is-pressed{ background: #d2d2d5; border-color: #d2d2d5; }
+.btn--ds.btn--tertiary:disabled{ background: #d6d6d9; border-color: #d6d6d9; color: #9da0a4; }
+
+.btn--ds.btn--text{ background: transparent; color: #1f1f1f; border-color: transparent; }
+.btn--ds.btn--text.is-hover{ color: #2f2f33; }
+.btn--ds.btn--text.is-pressed{ color: #4a4a4f; }
+.btn--ds.btn--text:disabled{ color: #9da0a4; }
 .btn--primary{
   background: var(--primary);
   border-color: var(--primary);
