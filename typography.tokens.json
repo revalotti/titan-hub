@@ -1,0 +1,78 @@
+{
+  "typography": {
+    "primitive": {
+      "font-audiense": {
+        "category": "family",
+        "value": "Poppins",
+        "fallback": "system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
+      },
+      "font-size-s": { "category": "size", "px": 12, "rem": 0.75 },
+      "font-size-m": { "category": "size", "px": 14, "rem": 0.875 },
+      "font-size-l": { "category": "size", "px": 16, "rem": 1 },
+      "font-size-xl": { "category": "size", "px": 20, "rem": 1.25 },
+      "font-size-2xl": { "category": "size", "px": 24, "rem": 1.5 },
+      "font-size-3xl": { "category": "size", "px": 32, "rem": 2 },
+      "font-size-4xl": { "category": "size", "px": 46, "rem": 2.875 },
+
+      "font-leading-s": { "category": "leading", "px": 16, "rem": 1 },
+      "font-leading-m": { "category": "leading", "px": 18, "rem": 1.125 },
+      "font-leading-l": { "category": "leading", "px": 20, "rem": 1.25 },
+      "font-leading-xl": { "category": "leading", "px": 22, "rem": 1.375 },
+      "font-leading-2xl": { "category": "leading", "px": 24, "rem": 1.5 },
+      "font-leading-3xl": { "category": "leading", "px": 28, "rem": 1.75 },
+      "font-leading-4xl": { "category": "leading", "px": 36, "rem": 2.25 },
+      "font-leading-5xl": { "category": "leading", "px": 50, "rem": 3.125 },
+
+      "font-weight-600": { "category": "weight", "value": 600, "name": "Semibold" },
+      "font-weight-500": { "category": "weight", "value": 500, "name": "Medium" },
+      "font-weight-400": { "category": "weight", "value": 400, "name": "Regular" },
+
+      "font-case-upper": { "category": "case", "value": "Uppercase", "denomination": "uc" },
+      "font-case-lower": { "category": "case", "value": "Lowercase", "denomination": "cl" },
+      "font-case-title": { "category": "case", "value": "Title Case", "denomination": "ct" },
+
+      "font-decoration-underline": {
+        "category": "decoration",
+        "value": "Underline",
+        "denomination": "udl"
+      },
+      "font-decoration-dashed": {
+        "category": "decoration",
+        "value": "Underline decoration-dashed",
+        "denomination": "dash"
+      }
+    },
+    "utility": {
+      "headings": {
+        "heading-2xl-600": ["font-audiense", "font-weight-600", "font-size-4xl", "font-leading-5xl"],
+        "heading-xl-600": ["font-audiense", "font-weight-600", "font-size-3xl", "font-leading-4xl"],
+        "heading-l-600": ["font-audiense", "font-weight-600", "font-size-2xl", "font-leading-3xl"],
+        "heading-m-600": ["font-audiense", "font-weight-600", "font-size-xl", "font-leading-2xl"],
+        "heading-s-600": ["font-audiense", "font-weight-600", "font-size-l", "font-leading-l"],
+        "heading-xs-500": ["font-audiense", "font-weight-500", "font-size-m", "font-leading-m"],
+        "heading-xs-600": ["font-audiense", "font-weight-600", "font-size-m", "font-leading-m"]
+      },
+      "body": {
+        "body-l-500": ["font-audiense", "font-weight-500", "font-size-l", "font-leading-l"],
+        "body-m-400": ["font-audiense", "font-weight-400", "font-size-m", "font-leading-m"],
+        "body-m-500": ["font-audiense", "font-weight-500", "font-size-m", "font-leading-m"],
+        "body-m-600": ["font-audiense", "font-weight-600", "font-size-m", "font-leading-m"],
+        "body-s-400": ["font-audiense", "font-weight-400", "font-size-s", "font-leading-s"],
+        "body-s-500": ["font-audiense", "font-weight-500", "font-size-s", "font-leading-s"],
+        "body-s-600": ["font-audiense", "font-weight-600", "font-size-s", "font-leading-s"]
+      },
+      "special": {
+        "text-link-s": ["font-audiense", "font-weight-400", "font-size-s", "font-leading-s", "font-decoration-underline"],
+        "text-link-m": ["font-audiense", "font-weight-400", "font-size-m", "font-leading-m", "font-decoration-underline"],
+        "text-input": ["font-audiense", "font-weight-400", "font-size-l", "font-leading-xl"],
+        "text-button": ["font-audiense", "font-weight-500", "font-size-l", "font-leading-m"],
+        "text-area": ["font-audiense", "font-weight-400", "font-size-l", "font-leading-2xl"]
+      }
+    },
+    "downloads": [
+      "Poppins-Medium.ttf",
+      "Poppins-Regular.ttf",
+      "Poppins-SemiBold.ttf"
+    ]
+  }
+}

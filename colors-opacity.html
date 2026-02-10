@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Titan Foundations · Colors Opacity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="layout">
+    <header class="hero">
+      <nav class="foundation-nav" aria-label="Foundations pages">
+        <a class="foundation-nav__link" href="./index.html">Colors</a>
+        <a class="foundation-nav__link is-active" href="./colors-opacity.html">Colors Opacity</a>
+        <a class="foundation-nav__link" href="./typography.html">Typography</a>
+      </nav>
+      <p class="eyebrow">Foundations</p>
+      <h1>Colors Opacity</h1>
+      <p class="lead">Opacity scale 10–90 built from each family base color: step 600 for all families, except Black and White where the base is 900.</p>
+    </header>
+
+    <section class="panel">
+      <h2>Opacity tokens</h2>
+      <div id="opacityFamilies" class="family-grid"></div>
+    </section>
+  </main>
+
+  <script type="module">
+    const mount = document.querySelector('#opacityFamilies');
+
+    function titleCase(value) {
+      return value.charAt(0).toUpperCase() + value.slice(1);
+    }
+
+    function tokenToCssVar(token){
+      return `$color_${token.replace(/\./g, '_')}`;
+    }
+
+    function buildFamilyCard(family, payload){
+      const article = document.createElement('article');
+      article.className = 'family';
+
+      const rows = Object.entries(payload.scale)
+        .sort((a,b) => Number(a[0]) - Number(b[0]))
+        .map(([step, meta]) => {
+          const token = `${family}-opacity-${step}`;
+          return `
+            <li class="token-row token-row--opacity">
+              <span class="swatch" style="background:${meta.value}"></span>
+              <span class="hex">${meta.value}</span>
+              <span class="token">${tokenToCssVar(token)}</span>
+            </li>
+          `;
+        })
+        .join('');
+
+      article.innerHTML = `
+        <h3 class="family__title">${titleCase(family)}</h3>
+        <p class="family__meta">Base: ${tokenToCssVar(payload['base-token'])} · ${payload['base-value']}</p>
+        <ul class="token-list">${rows}</ul>
+      `;
+      return article;
+    }
+
+    async function init(){
+      const res = await fetch('./colors.tokens.json', { cache: 'no-store' });
+      const tokens = await res.json();
+      const opacity = tokens?.color?.opacity || {};
+
+      Object.keys(opacity).sort().forEach((family) => {
+        mount.appendChild(buildFamilyCard(family, opacity[family]));
+      });
+    }
+
+    init();
+  </script>
+</body>
+</html>

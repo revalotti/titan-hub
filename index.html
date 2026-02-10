@@ -3,149 +3,41 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Titan Design System · Hub</title>
-
-  <!-- Typography -->
+  <title>Titan Foundations · Colors</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-  <!-- Styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-  <!-- App Shell (DS-like) -->
-  <header class="appbar">
-    <div class="appbar__left">
-      <button class="icon-btn" type="button" aria-label="Apps">
-        <span class="icon icon--grid" aria-hidden="true"></span>
-      </button>
-      <div class="brand">
-        <div class="brand__mark" aria-hidden="true">audiense</div>
-      </div>
-    </div>
+  <main class="layout">
+    <header class="hero">
+      <nav class="foundation-nav" aria-label="Foundations pages">
+        <a class="foundation-nav__link is-active" href="./index.html">Colors</a>
+        <a class="foundation-nav__link" href="./colors-opacity.html">Colors Opacity</a>
+        <a class="foundation-nav__link" href="./typography.html">Typography</a>
+      </nav>
+      <p class="eyebrow">Foundations</p>
+      <h1>Colors</h1>
+      <p class="lead">Token source generated from the files you shared (Neutrals, System-UI and Basic palettes).</p>
+    </header>
 
-    <div class="appbar__right">
-      <button class="icon-btn" type="button" aria-label="Menu">
-        <span class="icon icon--menu" aria-hidden="true"></span>
-      </button>
-      <button class="icon-btn" type="button" aria-label="Notifications">
-        <span class="icon icon--bell" aria-hidden="true"></span>
-      </button>
-      <button class="icon-btn" type="button" aria-label="Help">
-        <span class="icon icon--help" aria-hidden="true"></span>
-      </button>
-      <button class="icon-btn" type="button" aria-label="Settings">
-        <span class="icon icon--gear" aria-hidden="true"></span>
-      </button>
-      <button class="avatar" type="button" aria-label="User menu"></button>
-    </div>
-  </header>
+    <section class="panel">
+      <h2>Neutrals</h2>
+      <div id="neutrals" class="family-grid"></div>
+    </section>
 
-  <main class="page">
-    <div class="container">
-      <div class="page-head">
-        <div>
-          <h1 class="h1">Titan Design System Hub</h1>
-          <p id="subtitle" class="subhead"></p>
-        </div>
+    <section class="panel">
+      <h2>System · UI</h2>
+      <div id="systemUi" class="family-grid family-grid--five"></div>
+    </section>
 
-        <div class="page-head__actions">
-          <a id="zeroLink" class="btn btn--secondary" href="#" target="_blank" rel="noreferrer">Zeroheight</a>
-          <a id="sbLink" class="btn btn--primary" href="#" target="_blank" rel="noreferrer">Storybook</a>
-        </div>
-      </div>
-
-      <section class="panel">
-        <div class="panel__row">
-          <div class="search">
-            <span class="search__icon" aria-hidden="true"></span>
-            <input id="search" class="input input--search" type="search" placeholder="Search by component name…" autocomplete="off" />
-          </div>
-
-          <button id="filtersBtn" class="icon-btn icon-btn--filter" type="button" aria-label="Filters"></button>
-
-          <div class="spacer"></div>
-
-          <div class="meta">
-            <span class="meta__label">Updated</span>
-            <span id="updated" class="meta__value"></span>
-          </div>
-        </div>
-
-        <div class="tabs" role="tablist" aria-label="Sections">
-          <button class="tab tab--active" type="button" data-tab="current" role="tab" aria-selected="true">Current components</button>
-          <button class="tab" type="button" data-tab="next" role="tab" aria-selected="false">Next components</button>
-          <button class="tab" type="button" data-tab="require" role="tab" aria-selected="false">Require to Titan</button>
-        </div>
-
-        <!-- Current -->
-        <div class="panel__content" data-pane="current">
-          <div class="table-wrap">
-            <table class="table" aria-label="Current components table">
-              <thead>
-                <tr>
-                  <th class="col-check"><input type="checkbox" aria-label="Select all (visual only)" disabled></th>
-                  <th>Component</th>
-                  <th>Category</th>
-                  <th>Status</th>
-                  <th>Links</th>
-                  <th>Preview</th>
-                </tr>
-              </thead>
-              <tbody id="componentsTbody"></tbody>
-            </table>
-          </div>
-
-          <div class="hint">
-            <strong>Note:</strong> Previews render via Storybook iframes. If your Storybook blocks iframes, links will still work.
-          </div>
-        </div>
-
-        <!-- Next -->
-        <div class="panel__content is-hidden" data-pane="next">
-          <div id="nextList" class="stack"></div>
-        </div>
-
-        <!-- Require -->
-        <div class="panel__content is-hidden" data-pane="require">
-          <div class="require">
-            <div class="require__head">
-              <div>
-                <div class="h2">Request a component / change</div>
-                <div class="muted">Use the checklist below to keep requests clear and actionable.</div>
-              </div>
-              <a id="requireCta" class="btn btn--primary" href="#" target="_blank" rel="noreferrer">Request</a>
-            </div>
-
-            <div class="divider"></div>
-
-            <div class="require__body">
-              <div>
-                <div class="label">Request template</div>
-                <ul id="requireTemplate" class="list"></ul>
-              </div>
-
-              <div class="copybox">
-                <div class="label">Copy & paste</div>
-                <div class="code" id="templateText" aria-label="Template text"></div>
-                <button id="copyTemplate" class="btn btn--secondary" type="button">Copy template</button>
-                <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <footer class="footer">
-        <div class="footer__row">
-          <span>© <span id="year"></span> Titan Design System</span>
-          <span class="muted">Internal hub · Lightweight index to Zeroheight and Storybook.</span>
-        </div>
-      </footer>
-    </div>
+    <section class="panel">
+      <h2>Basic colors</h2>
+      <div id="basics" class="family-grid"></div>
+    </section>
   </main>
 
-  <script src="./script.js" defer></script>
+  <script src="./script.js" type="module"></script>
 </body>
 </html>
